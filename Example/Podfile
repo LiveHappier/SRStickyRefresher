@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SRStickyRefresher_Example' do
+  pod 'SRStickyRefresher', :path => '../'
+
+  target 'SRStickyRefresher_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
