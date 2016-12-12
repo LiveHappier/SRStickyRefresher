@@ -32,6 +32,13 @@ open class SRStickyRefresherView: UICollectionReusableView {
             switch state {
             case .loading:
                 if oldValue != .loading {
+                    if #available(iOS 10.0, *) {
+                        let generator = UIImpactFeedbackGenerator(style: .light)
+                        generator.impactOccurred()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
                     animateLoadingState()
                 }
                 
