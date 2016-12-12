@@ -59,9 +59,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             if let header = collectionView.dequeueReusableSupplementaryView(ofKind: SRStickyHeaderParallaxHeader, withReuseIdentifier: "parallaxHeader", for: indexPath) as? HeaderView {
                 header.collectionView = self.collectionView;
                 header.action = {
-                    print("refresh")
+                    //print("refresh")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        print("end Refreshing")
+                        //print("end Refreshing")
                         header.endRefreshing();
                     }
                 }

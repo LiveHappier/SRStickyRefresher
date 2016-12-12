@@ -70,6 +70,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let dataSource = self.collectionView?.dataSource else {return nil;}
+        guard let cv = self.collectionView else {return nil;}
         
         // The rect should compensate the header size
         var adjustedRect = rect;
@@ -85,9 +86,14 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         var headers = [Int: UICollectionViewLayoutAttributes]();
         var lastCells = [Int: UICollectionViewLayoutAttributes]();
         var visibleParallexHeader = false;
+        
+        let maxHeight = self.parallaxHeaderReferenceSize.height;
+        let minHeight = self.parallaxHeaderMinimumReferenceSize.height;
+        let loadingHeight = maxHeight * CGFloat(maxStreching)
+        let offsetY = (!cv.isInLoading) ? self.parallaxHeaderReferenceSize.height : loadingHeight
         for (idx, attributes) in allItems.enumerated() {
             var frame = attributes.frame;
-            frame.origin.y += self.parallaxHeaderReferenceSize.height;
+            frame.origin.y += offsetY;
             attributes.frame = frame;
             
             let indexPath = attributes.indexPath;
@@ -280,7 +286,6 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         
         let finalHeight = self.disableStretching && height > maxHeight ? maxHeight : height
         
-        print("isInLoading \(cv.isInLoading)")
         
         currentAttribute.frame = CGRect(
             x: frame.origin.x,

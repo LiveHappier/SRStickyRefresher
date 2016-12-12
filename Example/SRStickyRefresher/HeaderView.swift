@@ -23,23 +23,23 @@ class HeaderView: SRStickyRefresherView {
             
             switch(self.state){
             case .initial:
-                print("initial")
+               // print("initial")
                 self.indicatorView.progress = 0;
                 self.indicatorView.isHidden = true;
                 self.indicatorView.stopAnimating()
                 break;
             case .releasing(let progress):
-                print("releasing \(progress)")
+                //print("releasing \(progress)")
                 self.indicatorView.isHidden = false;
                 self.indicatorView.progress = Float(progress)
                 break;
             case .finished:
-                print("finished")
+                //print("finished")
                 self.indicatorView.isHidden = true;
                 self.indicatorView.stopAnimating()
                 break;
             case .loading:
-                print("loading")
+                //print("loading")
                 self.indicatorView.isHidden = false;
                 self.indicatorView.startAnimating()
                 break;

@@ -86,10 +86,10 @@ public extension SRStickyRefresherView {
        
         
         //scrollView?.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
-        let delayTime = DispatchTime.now() + Double(Int64(0.27 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
-            self?.state = .loading
-        }
+        //let delayTime = DispatchTime.now() + Double(Int64(0.27 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        //DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
+            self.state = .loading
+        //}
     }
     
     open func endRefreshing() {
@@ -135,7 +135,7 @@ private extension SRStickyRefresherView {
             options: animationOptions,
             animations: {
                 self.collectionView?.collectionViewLayout.invalidateLayout();
-                self.collectionView?.layoutAttributesForSupplementaryElement(ofKind: SRStickyHeaderParallaxHeader, at: IndexPath(row: 0, section: 0))
+//                self.collectionView?.layoutAttributesForSupplementaryElement(ofKind: SRStickyHeaderParallaxHeader, at: IndexPath(row: 0, section: 0))
 //                self.scrollView?.contentInset = self.scrollViewDefaultInsets
 //                if case .top = self.position {
 //                    self.scrollView?.contentOffset.y = -self.scrollViewDefaultInsets.top
@@ -143,7 +143,7 @@ private extension SRStickyRefresherView {
         },
             completion: { _ in
 //                self.addScrollViewObserving()
-//                self.state = .initial
+                self.state = .initial
         }
         )
     }
