@@ -33,7 +33,7 @@ public final class SRActivityData {
     
     /**
      Create information package used to display UI blocker.
-     
+     /Users/Yanis/SquadRunner/SRStickyRefresher/SRStickyRefresher/Classes/SRActivityIndicatorAnimationBallClipRotate.swift
      Appropriate SRActivityIndicatorView.DEFAULT_* values are used for omitted params.
      
      - parameter size:                 size of activity indicator view.

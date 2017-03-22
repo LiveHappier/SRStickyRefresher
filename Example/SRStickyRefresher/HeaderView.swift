@@ -13,44 +13,42 @@ import SRStickyRefresher
 class HeaderView: SRStickyRefresherView {
     
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var indicatorView: SRActivityIndicatorView!
+    @IBOutlet weak var secondIndicator: SRActivityIndicatorView!
+    
+    let color  = UIColor(red: 0/255, green: 209/255, blue: 192/255, alpha: 1.0)
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
-        if let layoutAttributes = layoutAttributes as? SRStickyRefresherFlowLayoutAttributes {
+        if layoutAttributes is SRStickyRefresherFlowLayoutAttributes {
             UIView.beginAnimations("", context:nil);
             
+            self.secondIndicator.color = color
+            self.secondIndicator.color2 = self.backgroundColor!
             
             switch(self.state){
             case .initial:
                // print("initial")
-                self.indicatorView.progress = 0;
-                self.indicatorView.isHidden = true;
-                self.indicatorView.stopAnimating()
+                self.secondIndicator.progress = 1;
+                self.secondIndicator.isHidden = true
+                self.secondIndicator.stopAnimating()
+                
                 break;
             case .releasing(let progress):
-                //print("releasing \(progress)")
-                self.indicatorView.isHidden = false;
-                self.indicatorView.progress = Float(progress)
+
+                self.secondIndicator.isHidden = false
+                self.secondIndicator.progress = Float(progress)
                 break;
             case .finished:
-                //print("finished")
-                self.indicatorView.isHidden = true;
-                self.indicatorView.stopAnimating()
+                
+                self.secondIndicator.isHidden = true;
+                self.secondIndicator.stopAnimating()
                 break;
             case .loading:
-                //print("loading")
-                self.indicatorView.isHidden = false;
-                self.indicatorView.startAnimating()
+                self.secondIndicator.isHidden = false
+                self.secondIndicator.startAnimating()
                 break;
             }
-            
-            
-            
             UIView.commitAnimations();
         }
-        
-        
     }
-    
 }

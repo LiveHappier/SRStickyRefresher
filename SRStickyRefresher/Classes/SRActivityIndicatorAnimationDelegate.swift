@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 
 protocol SRActivityIndicatorAnimationDelegate {
-    func setUpAnimation(in layer:CALayer, size: CGSize, color: UIColor)
-    func setUpProgress(in layer: CALayer, size: CGSize, color: UIColor, progress: Float)
+    func setUpAnimation(in layer:CALayer, size: CGSize, color: UIColor, secondColor: UIColor)
+    func setUpProgress(in layer: CALayer, size: CGSize, color: UIColor, progress: CGFloat, secondColor: UIColor)
 }

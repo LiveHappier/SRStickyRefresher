@@ -30,12 +30,17 @@ public final class SRActivityIndicatorView: UIView {
     /// Default message displayed in UI blocker. Default value is nil.
     public static var DEFAULT_BLOCKER_MESSAGE: String? = nil
     
+    
     /// Default font of message displayed in UI blocker. Default value is bold system font, size 20.
     public static var DEFAULT_BLOCKER_MESSAGE_FONT = UIFont.boldSystemFont(ofSize: 20)
     
     
     /// Color of activity indicator view.
     @IBInspectable public var color: UIColor = SRActivityIndicatorView.DEFAULT_COLOR
+    @IBInspectable public var color2: UIColor = SRActivityIndicatorView.DEFAULT_COLOR
+    @IBInspectable public var forceProgress = CGFloat()
+    
+    
     
     /// Padding of activity indicator view.
     @IBInspectable public var padding: CGFloat = SRActivityIndicatorView.DEFAULT_PADDING
@@ -111,8 +116,6 @@ public final class SRActivityIndicatorView: UIView {
             setUpProgress(progress)
         }
     }
-
-    
     /**
      Stop animating.
      */
@@ -121,28 +124,42 @@ public final class SRActivityIndicatorView: UIView {
         isAnimating = false
         layer.sublayers?.removeAll()
     }
-    
-    
-    
+
     // MARK: Privates
-    
     private final func setUpProgress(_ progress : Float) {
-        let animation: SRActivityIndicatorAnimationDelegate = SRActivityIndicatorAnimationLineSpinFadeLoader()
+
+        layer.sublayers = nil
+        let sinus = sin(Double(progress))
+        let position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor:color, toColor:color.withAlphaComponent(0.2), linewidth:1.5, toValue: 0.99)
+        self.layer.addSublayer(gradientRingLayer)
+        let duration = 3.0
+        gradientRingLayer.animateCircleTo(duration: duration, fromValue: 0, toValue: CGFloat(sinus))
+        
+      /*  let animation: SRActivityIndicatorAnimationDelegate = SRActivityIndicatorAnimationBallClipRotateMultiple()
         var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(padding, padding, padding, padding))
         let minEdge = min(animationRect.width, animationRect.height)
         
         layer.sublayers = nil
         animationRect.size = CGSize(width: minEdge, height: minEdge)
-        animation.setUpProgress(in: layer, size: animationRect.size, color: color, progress: progress)
+        animation.setUpProgress(in: layer, size: animationRect.size, color: color, progress: CGFloat(progress), secondColor: color2)*/
     }
     
     private final func setUpAnimation() {
-        let animation: SRActivityIndicatorAnimationDelegate = SRActivityIndicatorAnimationLineSpinFadeLoader()
-        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(padding, padding, padding, padding))
-        let minEdge = min(animationRect.width, animationRect.height)
         
         layer.sublayers = nil
+        let position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor:color, toColor: color.withAlphaComponent(0.2), linewidth:1.5, toValue:0.99)
+        self.layer.addSublayer(gradientRingLayer)
+        let duration = 1.0
+        gradientRingLayer.animateRotateCircle(duration: duration, reverse: false)
+        
+        /*let animation: SRActivityIndicatorAnimationDelegate =  SRActivityIndicatorAnimationRingGradiantRotate()
+        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(padding, padding, padding, padding))
+        let minEdge = min(animationRect.width, animationRect.height)
+        layer.sublayers = nil
+        
         animationRect.size = CGSize(width: minEdge, height: minEdge)
-        animation.setUpAnimation(in: layer, size: animationRect.size, color: color)
+        animation.setUpAnimation(in: layer, size: animationRect.size, color: color, secondColor: color2)*/
     }
 }

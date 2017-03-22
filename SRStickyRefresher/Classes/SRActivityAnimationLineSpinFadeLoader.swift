@@ -10,10 +10,11 @@ import Foundation
 
 class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimationDelegate {
     
-    
-    func setUpProgress(in layer: CALayer, size: CGSize, color: UIColor, progress: Float) {
+    func setUpProgress(in layer: CALayer, size: CGSize, color: UIColor, progress: CGFloat, secondColor: UIColor) {
         layer.removeAllAnimations()
         layer.sublayers?.removeAll()
+        
+        
         let lineSpacing: CGFloat = 2
         let lineSize = CGSize(width: (size.width - 4 * lineSpacing) / 5, height: (size.height - 2 * lineSpacing) / 3)
         let x = (layer.bounds.size.width - size.width) / 2
@@ -33,19 +34,18 @@ class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimati
         }
     }
     
-    func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
+    func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor, secondColor: UIColor) {
         let lineSpacing: CGFloat = 2
         let lineSize = CGSize(width: (size.width - 4 * lineSpacing) / 5, height: (size.height - 2 * lineSpacing) / 3)
         let x = (layer.bounds.size.width - size.width) / 2
         let y = (layer.bounds.size.height - size.height) / 2
+        
         let duration: CFTimeInterval = 1.2
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0.12, 0.24, 0.36, 0.48, 0.6, 0.72, 0.84, 0.96]
         let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        
         // Animation
         let animation = CAKeyframeAnimation(keyPath: "opacity")
-        
         animation.keyTimes = [0, 0.5, 1]
         animation.timingFunctions = [timingFunction, timingFunction]
         animation.values = [1, 0.3, 1]
@@ -76,7 +76,7 @@ class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimati
             y: origin.y + radius * (sin(angle) + 1),
             width: lineContainerSize.width,
             height: lineContainerSize.height)
-        let line = SRActivityIndicatorShape.line.layerWith(size: size, color: color)
+        let line = SRActivityIndicatorShape.circle.layerWith(size: size, color: color)
         let lineFrame = CGRect(
             x: (lineContainerSize.width - size.width) / 2,
             y: (lineContainerSize.height - size.height) / 2,
