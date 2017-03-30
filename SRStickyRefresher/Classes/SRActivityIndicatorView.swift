@@ -131,7 +131,7 @@ public final class SRActivityIndicatorView: UIView {
         layer.sublayers = nil
         let sinus = sin(Double(progress))
         let position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
-        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor:color, toColor:color.withAlphaComponent(0.2), linewidth:1.5, toValue: 0.99)
+        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor:color.withAlphaComponent(0.2), toColor:color, linewidth:1.5, toValue: 0.99)
         self.layer.addSublayer(gradientRingLayer)
         let duration = 3.0
         gradientRingLayer.animateCircleTo(duration: duration, fromValue: 0, toValue: CGFloat(sinus))
@@ -149,7 +149,7 @@ public final class SRActivityIndicatorView: UIView {
         
         layer.sublayers = nil
         let position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
-        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor:color, toColor: color.withAlphaComponent(0.2), linewidth:1.5, toValue:0.99)
+        let gradientRingLayer = WCGraintCircleLayer(bounds: layer.bounds, position: position, fromColor: color.withAlphaComponent(0.2), toColor: color, linewidth:1.5, toValue:0.99)
         self.layer.addSublayer(gradientRingLayer)
         let duration = 1.0
         gradientRingLayer.animateRotateCircle(duration: duration, reverse: false)
