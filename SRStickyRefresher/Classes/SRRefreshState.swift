@@ -20,7 +20,7 @@ public enum SRRefreshState: Equatable, CustomStringConvertible {
         case .initial: return "Inital"
         case .releasing(let progress): return "Releasing:\(progress)"
         case .loading: return "Loading"
-        case .finished(let progress): return "Finished"
+        case .finished( _): return "Finished"
         }
     }
 }

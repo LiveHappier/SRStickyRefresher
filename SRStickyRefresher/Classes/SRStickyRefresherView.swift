@@ -82,12 +82,12 @@ open class SRStickyRefresherView: UICollectionReusableView {
 // MARK: - Start/End Refreshin
 public extension SRStickyRefresherView {
     
-    open func startRefreshing() {
+    public func startRefreshing() {
         if self.state != .initial {
             return
         }
         
-        var offsetY: CGFloat
+        var _: CGFloat
         
         //offsetY = -refreshView.frame.height - scrollViewDefaultInsets.top
        
@@ -99,7 +99,7 @@ public extension SRStickyRefresherView {
         //}
     }
     
-    open func endRefreshing() {
+    public func endRefreshing() {
         if state == .loading {
             state = .finished
             collectionView?.isInLoading = false;

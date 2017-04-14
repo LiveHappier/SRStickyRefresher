@@ -56,12 +56,9 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
     }
     
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        var attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
+        let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath)
         if(attributes == nil && elementKind == SRStickyHeaderParallaxHeader) {
-            if let stickyAttributes = SRStickyRefresherFlowLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath) as? SRStickyRefresherFlowLayoutAttributes {
-                return stickyAttributes
-            }
-            
+            return SRStickyRefresherFlowLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
         }
         return attributes
     }
@@ -69,7 +66,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
     
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let dataSource = self.collectionView?.dataSource else {return nil;}
+        guard (self.collectionView?.dataSource) != nil else {return nil;}
         guard let cv = self.collectionView else {return nil;}
         
         // The rect should compensate the header size
@@ -77,7 +74,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height;
         
         var allItems:  [UICollectionViewLayoutAttributes] = [];
-        var originalAttributes = super.layoutAttributesForElements(in: adjustedRect) ?? [];
+        let originalAttributes = super.layoutAttributesForElements(in: adjustedRect) ?? [];
         
         //Perform a deep copy of the attributes returned from super
         for originalAttribute in originalAttributes {
@@ -88,10 +85,10 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         var visibleParallexHeader = false;
         
         let maxHeight = self.parallaxHeaderReferenceSize.height;
-        let minHeight = self.parallaxHeaderMinimumReferenceSize.height;
+        _ = self.parallaxHeaderMinimumReferenceSize.height;
         let loadingHeight = maxHeight * CGFloat(maxStreching)
         let offsetY = (!cv.isInLoading) ? self.parallaxHeaderReferenceSize.height : loadingHeight
-        for (idx, attributes) in allItems.enumerated() {
+        for (_, attributes) in allItems.enumerated() {
             var frame = attributes.frame;
             frame.origin.y += offsetY;
             attributes.frame = frame;
@@ -159,7 +156,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         }
         
         if ( !self.disableStickyHeaders) {
-            for (key, obj) in lastCells {
+            for (_, obj) in lastCells {
                 let indexPath = obj.indexPath;
                 let indexPathKey = indexPath.section;
                 

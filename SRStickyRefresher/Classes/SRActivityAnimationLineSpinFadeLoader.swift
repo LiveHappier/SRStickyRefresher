@@ -25,7 +25,7 @@ class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimati
         let nbLines = Int(progress * 8)
         
         for i in 0 ..< nbLines {
-            let line = lineAt(angle: CGFloat(M_PI_4 * Double(i)),
+            let line = lineAt(angle: CGFloat((Double.pi / 4) * Double(i)),
                               size: lineSize,
                               origin: CGPoint(x: x, y: y),
                               containerSize: size,
@@ -55,7 +55,7 @@ class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimati
         
         // Draw lines
         for i in 0 ..< 8 {
-            let line = lineAt(angle: CGFloat(M_PI_4 * Double(i)),
+            let line = lineAt(angle: CGFloat((Double.pi / 4) * Double(i)),
                               size: lineSize,
                               origin: CGPoint(x: x, y: y),
                               containerSize: size,
@@ -86,7 +86,7 @@ class SRActivityIndicatorAnimationLineSpinFadeLoader: SRActivityIndicatorAnimati
         lineContainer.frame = lineContainerFrame
         line.frame = lineFrame
         lineContainer.addSublayer(line)
-        lineContainer.sublayerTransform = CATransform3DMakeRotation(CGFloat(M_PI_2) + angle, 0, 0, 1)
+        lineContainer.sublayerTransform = CATransform3DMakeRotation(CGFloat(Double.pi / 2) + angle, 0, 0, 1)
         
         return lineContainer
     }

@@ -12,7 +12,7 @@ import Foundation
 class SRActivityIndicatorAnimationBallClipRotateMultiple: SRActivityIndicatorAnimationDelegate {
     internal func setUpProgress(in layer: CALayer, size: CGSize, color: UIColor, progress: CGFloat, secondColor: UIColor) {
         let bigCircleSize: CGFloat = size.width
-        let smallCircleSize: CGFloat = (size.width / 100) * 90
+        let _: CGFloat = (size.width / 100) * 90
         let longDuration: CFTimeInterval = 1
         let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
@@ -37,7 +37,7 @@ class SRActivityIndicatorAnimationBallClipRotateMultiple: SRActivityIndicatorAni
     
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor, secondColor: UIColor) {
         let bigCircleSize: CGFloat = size.width
-        let smallCircleSize: CGFloat = (size.width / 100) * 90
+        let _: CGFloat = (size.width / 100) * 90
         let longDuration: CFTimeInterval = 1
         let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
@@ -66,9 +66,9 @@ class SRActivityIndicatorAnimationBallClipRotateMultiple: SRActivityIndicatorAni
         
         rotateAnimation.timingFunctions = [timingFunction, timingFunction]
         if !reverse {
-            rotateAnimation.values = [0, M_PI, 2 * M_PI]
+            rotateAnimation.values = [0, Double.pi, 2 * Double.pi]
         } else {
-            rotateAnimation.values = [0, -M_PI, -2 * M_PI]
+            rotateAnimation.values = [0, -Double.pi, -2 * Double.pi]
         }
         rotateAnimation.duration = duration
         
