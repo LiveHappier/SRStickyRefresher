@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -64,41 +62,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-110" y="209"/>
-        </scene>
-        <!--Second View Controller-->
-        <scene sceneID="b81-3r-xV0">
-            <objects>
-                <viewController id="dlN-lG-2QQ" customClass="SecondViewController" customModule="SRStickyRefresher_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mj6-6D-ZHV"/>
-                        <viewControllerLayoutGuide type="bottom" id="5ZI-1C-Viw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zEg-Wx-aFs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c7-eS-LoI">
-                                <rect key="frame" x="98" y="260" width="30" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="5c7-eS-LoI" secondAttribute="height" multiplier="1:1" id="Ehj-h9-Ksz"/>
-                                    <constraint firstAttribute="width" constant="30" id="rci-6s-Eu6"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5c7-eS-LoI" firstAttribute="leading" secondItem="zEg-Wx-aFs" secondAttribute="leadingMargin" constant="82" id="Fi4-hB-Rg8"/>
-                            <constraint firstItem="5c7-eS-LoI" firstAttribute="top" secondItem="Mj6-6D-ZHV" secondAttribute="bottom" constant="240" id="wsb-CK-u5T"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tesLoader" destination="5c7-eS-LoI" id="VOq-cT-GaN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hCn-2K-g69" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="716" y="210"/>
         </scene>
     </scenes>
 </document>

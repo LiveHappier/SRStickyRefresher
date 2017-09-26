@@ -144,7 +144,7 @@ public final class SRActivityIndicatorPresenter {
             if label.bounds.size.width > activityContainer.bounds.size.width {
                 let maxWidth = activityContainer.bounds.size.width - 16
                 
-                label.bounds.size = NSString(string: message).boundingRect(with: CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil).size
+                label.bounds.size = NSString(string: message).boundingRect(with: CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: label.font], context: nil).size
             }
             label.center = CGPoint(
                 x: activityIndicatorView.center.x,
