@@ -253,7 +253,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         let maxY = frame.maxY;
         
         // make sure the frame won't be negative values
-        var y = min(maxY - self.parallaxHeaderMinimumReferenceSize.height, bounds.origin.y + cv.contentInset.top);
+        var y = min(maxY - self.parallaxHeaderMinimumReferenceSize.height, bounds.origin.y + returnInsetTop());
         
         
         
@@ -292,8 +292,13 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         );
     }
     
-    
-    
-    
+    func returnInsetTop() -> CGFloat {
+        guard let cv = self.collectionView else {return 0}
+        if #available(iOS 11, *) {
+            return cv.adjustedContentInset.top
+        } else {
+            return cv.contentInset.top
+        }
+    }
 }
 
