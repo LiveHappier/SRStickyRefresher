@@ -74,7 +74,14 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         adjustedRect.origin.y -= self.parallaxHeaderReferenceSize.height;
         
         var allItems:  [UICollectionViewLayoutAttributes] = [];
-        let originalAttributes = super.layoutAttributesForElements(in: adjustedRect) ?? [];
+        
+        guard let attributes = super.layoutAttributesForElements(in: adjustedRect) else {
+            return nil
+        }
+        guard let originalAttributes =  attributes.map( { $0.copy() }) as? [UICollectionViewLayoutAttributes] else {
+            return nil
+        }
+        //let originalAttributes = super.layoutAttributesForElements(in: adjustedRect) ?? [];
         
         //Perform a deep copy of the attributes returned from super
         for originalAttribute in originalAttributes {
