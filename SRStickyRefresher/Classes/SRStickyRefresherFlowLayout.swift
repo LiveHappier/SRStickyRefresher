@@ -92,7 +92,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         var visibleParallexHeader = false;
         
         let maxHeight = self.parallaxHeaderReferenceSize.height;
-        _ = self.parallaxHeaderMinimumReferenceSize.height;
+        let sectionsToAdd = NSMutableIndexSet()
         let loadingHeight = maxHeight * CGFloat(maxStreching)
         let offsetY = (!cv.isInLoading) ? self.parallaxHeaderReferenceSize.height : loadingHeight
         for (_, attributes) in allItems.enumerated() {
@@ -101,11 +101,13 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
             attributes.frame = frame;
             
             let indexPath = attributes.indexPath;
-            let isHeader = attributes.representedElementKind == UICollectionElementKindSectionHeader
+            let isHeader = attributes.representedElementCategory == .supplementaryView
             let isFooter = attributes.representedElementKind == UICollectionElementKindSectionFooter
             
             if (isHeader){
                 headers[indexPath.section] = attributes;
+                // Update Sections to Add
+                sectionsToAdd.add(indexPath.section)
             }else if (isFooter){
                 // Not implemented
             }else {
@@ -124,6 +126,9 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
                 if (indexPath.item == 0 && indexPath.section == 0) {
                     visibleParallexHeader = true;
                 }
+                
+                // Update Sections to Add
+                sectionsToAdd.add(indexPath.section)
             }
             
             if (isHeader) {
@@ -145,21 +150,14 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         }
         
         
-        // This method may not be explicitly defined, default to 1
-        // https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewDataSource_protocol/Reference/Reference.html#jumpTo_6
-        //    NSUInteger numberOfSections = [self.collectionView.dataSource
-        //                                   respondsToSelector:@selector(numberOfSectionsInCollectionView:)]
-        //                                ? [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView]
-        //                                : 1;
-        
-        // Create the attributes for the Parallex header
-        if (visibleParallexHeader && self.parallaxHeaderReferenceSize != CGSize.zero ) {
-            if let currentAttribute = self.layoutAttributesForSupplementaryView(ofKind: SRStickyHeaderParallaxHeader, at:IndexPath()) as? SRStickyRefresherFlowLayoutAttributes {
-                self.updateParallaxHeader(currentAttribute : currentAttribute);
-                
-                allItems.append(currentAttribute);
-            }
+        for section in sectionsToAdd {
+            let indexPath = IndexPath(item: 0, section: section)
             
+            if let sectionAttributes = self.layoutAttributesForSupplementaryView(ofKind: SRStickyHeaderParallaxHeader, at: indexPath) as? SRStickyRefresherFlowLayoutAttributes {
+                allItems.append(sectionAttributes);
+                self.updateParallaxHeader(currentAttribute : sectionAttributes);
+                headers[section] = sectionAttributes
+            }
         }
         
         if ( !self.disableStickyHeaders) {
