@@ -14,7 +14,7 @@ class SRActivityIndicatorAnimationBallClipRotateMultiple: SRActivityIndicatorAni
         let bigCircleSize: CGFloat = size.width
         let _: CGFloat = (size.width / 100) * 90
         let longDuration: CFTimeInterval = 1
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        let timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         circleOf(shape: .ringWithGradient,
                  duration: longDuration,
@@ -39,7 +39,7 @@ class SRActivityIndicatorAnimationBallClipRotateMultiple: SRActivityIndicatorAni
         let bigCircleSize: CGFloat = size.width
         let _: CGFloat = (size.width / 100) * 90
         let longDuration: CFTimeInterval = 1
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        let timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         circleOf(shape: .ringWithGradient,
                  duration: longDuration,

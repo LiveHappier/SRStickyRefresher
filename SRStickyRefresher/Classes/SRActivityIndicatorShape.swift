@@ -91,7 +91,7 @@ enum SRActivityIndicatorShape {
             shapeMask.strokeColor = UIColor.red.cgColor
             shapeMask.fillColor = UIColor.clear.cgColor
             shapeMask.lineWidth = lineWidth
-            shapeMask.lineCap = kCALineCapRound
+            shapeMask.lineCap = CAShapeLayerLineCap.round
             shapeMask.strokeStart = 0.010
             shapeMask.strokeEnd = 0.99
             gradient.mask = shapeMask

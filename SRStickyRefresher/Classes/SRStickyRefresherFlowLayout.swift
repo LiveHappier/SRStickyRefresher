@@ -89,7 +89,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         }
         var headers = [Int: UICollectionViewLayoutAttributes]();
         var lastCells = [Int: UICollectionViewLayoutAttributes]();
-        var visibleParallexHeader = false;
+//        var visibleParallexHeader = false;
         
         let maxHeight = self.parallaxHeaderReferenceSize.height;
         let sectionsToAdd = NSMutableIndexSet()
@@ -102,7 +102,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
             
             let indexPath = attributes.indexPath;
             let isHeader = attributes.representedElementCategory == .supplementaryView
-            let isFooter = attributes.representedElementKind == UICollectionElementKindSectionFooter
+            let isFooter = attributes.representedElementKind == UICollectionView.elementKindSectionFooter
             
             if (isHeader){
                 headers[indexPath.section] = attributes;
@@ -123,9 +123,9 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
                 
                 
                 
-                if (indexPath.item == 0 && indexPath.section == 0) {
-                    visibleParallexHeader = true;
-                }
+//                if (indexPath.item == 0 && indexPath.section == 0) {
+//                    visibleParallexHeader = true;
+//                }
                 
                 // Update Sections to Add
                 sectionsToAdd.add(indexPath.section)
@@ -141,13 +141,13 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
         
         // when the visible rect is at top of the screen, make sure we see
         // the parallex header
-        if (rect.minY <= 0) {
-            visibleParallexHeader = true;
-        }
+//        if (rect.minY <= 0) {
+//            visibleParallexHeader = true;
+//        }
         
-        if (self.parallaxHeaderAlwaysOnTop == true) {
-            visibleParallexHeader = true;
-        }
+//        if (self.parallaxHeaderAlwaysOnTop == true) {
+//            visibleParallexHeader = true;
+//        }
         
         
         for section in sectionsToAdd {
@@ -169,7 +169,7 @@ public class SRStickyRefresherFlowLayout: UICollectionViewFlowLayout {
                 // CollectionView automatically removes headers not in bounds
                 if ( header == nil) {
                     let indexPathHeader = IndexPath(row : 0, section : indexPath.section)
-                    header = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPathHeader);
+                    header = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPathHeader);
                 
                     if let header = header, header.frame.size == CGSize.zero {
                         allItems.append(header);
